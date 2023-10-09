@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+
+%% preamble: Keep it clean; only include those you need
+\usepackage{amsmath}
+\usepackage[margin = 1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{natbib}
+
+% for space filling
+\usepackage{lipsum}
+% highlighting hyper links
+\usepackage[colorlinks=true, citecolor=blue]{hyperref}
+
+
+%% meta data
+
+\title{Proposal: Loan Default Prediction}
+\author{Chris Truedson\\
+  Department of Statistics\\
+  University of Connecticut
+}
+
+\begin{document}
+\maketitle
+
+
+\paragraph{Introduction}
+Approximately 22.7 million Americans have personal loans, 45 million have student loans, and 51.5 million households have mortgages with the vast majority of all these loans coming from banks and similar financial institutions. As such, it is crucial that these businesses are able to efficiently, accurately, and with the greatest level of optimization determine who it is safe to loan money to and who is likely to default. This is a practical business problem that is continuously being tinkered with to find new and better approaches. Many studies have took on the issue of using machine learning to predict whether a customer will default on a loan or not using various different methods like decision trees and random forests \cite{madaan2021loan}, KNN approaches \cite{lai2020loan}, and deep neural nets \cite{bayraci2019deep} to name a few.
+
+\paragraph{Specific Aims}
+It's already been shown that various types of models can produce high to near perfect levels or accuracy in predicting loan default. In this project I'd like to look at what the most important factors in predicting loan default are along with whether they differ depending on the type of loan. I suspect financial factors like credit scores that have been built essentially for this purpose and are combined of a magnitude more personal and financial data are particularly important in predicting default and that the type pf loan does affect the most important metrics as student loans I suspect the credit score of the borrower is less important than if they have a cosigner. Further, I'd apply the various statistical models that have been traditionally used and rank and compare them to determine the "best" model for this given problem. I suspect a random forest approach will prove most effective for this dataset in predicting default due to it's simplicity.
+
+\paragraph{Data}
+The data I'll be using primarily will come from the \href{https://www.kaggle.com/datasets/nikhil1e9/loan-default}{Loan Default Prediction Dataset} on Kaggle. Itself is a dataset from a Coursera competition \href{https://www.coursera.org/projects/data-science-coding-challenge-loan-default-prediction}{Loan Default Prediciton Challenge} featuring 255,347 observations and 18 variables with various demographic and financial data including but not limited to the borrowers age, their income, their education, their credit score, the loan amount, the type of loan, and various other metrics which provide a full picture of the loan, the borrower, and the borrower's financial situation.
+
+\paragraph{Research Design and Methods}
+First, I'll divide the data 50-50 into training and validation data, the validation data will be what I use to benchmark each of the proposed model types. From this I will create visualizations as I explore and analyze the dataset. At this point I will start building and fitting models to the training half of the data starting with a decision tree, then a random forest, and KNN with other possible approaches included depending on time and resources. I'll use the output from these models and the weights and significance it assigns to the variables to answer my first aim. While it's difficult to ascertain the popularity of various model types used in solving this problem, it's discussed in \cite{madaan2021loan} that the most typical applications are decision trees and random forests. Applying the models to the validation data and exploring various metrics and accuracy through confusion matrix's I can conclude a "best" model type to answer my second aim.   
+
+\paragraph{Discussion}
+The most challenging parts of the proposed work will be fitting and tuning each of the models. While straightforward in building them each model will require tuning using a variety of techniques. More difficult still will be testing more models than just those that have been proposed with perhaps even more specialized and advanced machine learning models like deep neural networks and even extreme gradient boosting as discussed in \cite{lai2020loan}. 
+\par The limitations of my work are twofold. With regards to my first aim of finding the most important variables, the dataset I'm working with contains 18 of probably the most common types of variables used in this setting however, other critical variables may be missing making my work in finding the most significant variables and seeing if they change with the type of loan bounded. In regards to my second aim of finding the "best" model, there's many limitations such as I won't be testing ALL possible models, instead I'll only be testing the most common and relatively simple with the possibility for some less employed more advanced models to be tested as well. Additionally, the dataset while "large" at approximately 250,000 observations businesses could be working with datasets magnitude of this size which if the models prove to all be very effective with very minor accuracy changes between them could see a shift in a much larger dataset of the "best" model.  
+\par Overall, I expect this project to go relatively smoothly as the project while it has complex components depending on the models employed and the level of tuning at the most base level is relatively straightforward. If things do go wrong for whatever reason there were multiple other datasets I found with similar variables and looking at default prediction which could be used to replace or even compliment potentially my current dataset.
+
+\bibliography{refs}
+\bibliographystyle{chicago}
+
+\end{document}
