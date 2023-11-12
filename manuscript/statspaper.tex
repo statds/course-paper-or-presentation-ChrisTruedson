@@ -47,6 +47,36 @@ A discussion concludes in Section~\ref{sec:disc}.
 
 The data I'll be using primarily will come from the \href{https://www.kaggle.com/datasets/nikhil1e9/loan-default}{Loan Default Prediction Dataset} on Kaggle. Itself is a dataset from a Coursera competition \href{https://www.coursera.org/projects/data-science-coding-challenge-loan-default-prediction}{Loan Default Prediction Challenge} featuring 255,347 observations and 18 variables with various demographic and financial data including but not limited to the borrowers age, their income, their education, their credit score, the loan amount, the type of loan, and various other metrics which provide a full picture of the loan, the borrower, and the borrower's financial situation.
 
+\begin{table}[tbp]
+  \caption{Structure of the Loan Default Dataset}
+  \label{tab:rv}
+\centering
+\begin{tabular}{rrrp{3.75in}}
+  \toprule
+# & Column & Data Type & Description \\ 
+  \midrule
+0 & LoanID & object & A unique identifier for each loan \\ 
+  1 & Age & int & The age of the borrower \\ 
+  2 & Income & int & The annual income of the borrower \\ 
+  3 & LoanAmount & int & The amount of money being borrowed \\ 
+  4 & CreditScore & int & The credit score of the borrower \\ 
+  5 & MonthsEmployed & int & The number of months the borrower has been employed \\ 
+  6 & NumCreditLines & int & The number of credit lines the borrower has open \\ 
+  7 & InterestRate & float & The interest rate for the loan \\ 
+  8 & LoanTerm & int & The term length of the loan in months \\ 
+  9 & DTIRatio & float & The Debt-to-Income ratio \\
+  10 & Education & object & The highest level of education attained by the borrower (PhD, Master's, Bachelor's, High School) \\
+  11 & EmploymentType & object & The type of employment status of the borrower (Full-time, Part-time, Self-employed, Unemployed) \\
+  12 & MaritalStatus & object & The marital status of the borrower (Married, Divorced, Single) \\
+  13 & HasMortgage & object & Whether the borrower has a mortgage (Yes/No) \\
+  14 & HasDependents & object & Whether the borrower has dependents (Yes/No) \\
+  15 & LoanPurpose & object & The purpose of the loan (Home, Business, Education, Auto, Other) \\
+  16 & HasCoSigner & object & Whether the loan has a co-signer (Yes/No) \\
+  17 & Default & object & Indicate whether the loan defaulted or not (0 = Did not default, 1 = Defaulted) \\ 
+   \bottomrule
+\end{tabular}
+\end{table}
+
 \section{Methods}
 \label{sec:meth}
 
