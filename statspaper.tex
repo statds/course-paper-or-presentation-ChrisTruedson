@@ -1,0 +1,166 @@
+\documentclass[12pt]{article}
+
+%% preamble: Keep it clean; only include those you need
+\usepackage{amsmath}
+\usepackage[margin = 1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{adjustbox}
+
+% for space filling
+\usepackage{lipsum}
+% highlighting hyper links
+\usepackage[colorlinks=true, citecolor=blue]{hyperref}
+
+
+%% meta data
+
+\title{Examining Various Statistical Methods in Predicting Loan Default}
+\author{Chris Truedson\\
+  Department of Statistics\\
+  University of Connecticut
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+TBD  
+\end{abstract}
+
+
+\section{Introduction}
+\label{sec:intro}
+
+Approximately 22.7 million Americans have personal loans, 45 million have student loans, and 51.5 million households have mortgages with the vast majority of all these loans coming from banks and similar financial institutions. As such, it is crucial that these businesses are able to efficiently, accurately, and with the greatest level of optimization determine who it is safe to loan money to and who is likely to default. This is a practical business problem that is continuously being tinkered with to find new and better approaches. Many studies have took on the issue of using machine learning to predict whether a customer will default on a loan or not using various different methods like decision trees and random forests \citet{madaan2021loan}, KNN approaches \citet{lai2020loan}, and deep neural nets \citet{bayraci2019deep} to name a few.
+
+% roadmap
+The rest of the paper is organized as follows.
+The data will be presented in Section~\ref{sec:data}.
+The methods are described in Section~\ref{sec:meth}.
+The results are reported in Section~\ref{sec:resu}.
+A discussion concludes in Section~\ref{sec:disc}.
+
+
+\section{Data}
+\label{sec:data}
+
+The data I'll be using primarily will come from the \href{https://www.kaggle.com/datasets/nikhil1e9/loan-default}{Loan Default Prediction Dataset} on Kaggle. Itself is a dataset from a Coursera competition \href{https://www.coursera.org/projects/data-science-coding-challenge-loan-default-prediction}{Loan Default Prediction Challenge} featuring 255,347 observations and 18 variables with various demographic and financial data including but not limited to the borrowers age, their income, their education, their credit score, the loan amount, the type of loan, and various other metrics which provide a full picture of the loan, the borrower, and the borrower's financial situation.
+
+\begin{table}[tbp]
+  \caption{Structure of the Loan Default Dataset}
+  \label{tab:rv}
+\centering
+\begin{tabular}{rrrp{3.5in}}
+  \toprule
+# & Column & Data Type & Description \\ 
+  \midrule
+0 & LoanID & object & A unique identifier for each loan \\ 
+  1 & Age & int & The age of the borrower \\ 
+  2 & Income & int & The annual income of the borrower \\ 
+  3 & LoanAmount & int & The amount of money being borrowed \\ 
+  4 & CreditScore & int & The credit score of the borrower \\ 
+  5 & MonthsEmployed & int & The number of months the borrower has been employed \\ 
+  6 & NumCreditLines & int & The number of credit lines the borrower has open \\ 
+  7 & InterestRate & float & The interest rate for the loan \\ 
+  8 & LoanTerm & int & The term length of the loan in months \\ 
+  9 & DTIRatio & float & The Debt-to-Income ratio \\
+  10 & Education & object & The highest level of education attained by the borrower (PhD, Master's, Bachelor's, High School) \\
+  11 & EmploymentType & object & The type of employment status of the borrower (Full-time, Part-time, Self-employed, Unemployed) \\
+  12 & MaritalStatus & object & The marital status of the borrower (Married, Divorced, Single) \\
+  13 & HasMortgage & object & Whether the borrower has a mortgage (Yes/No) \\
+  14 & HasDependents & object & Whether the borrower has dependents (Yes/No) \\
+  15 & LoanPurpose & object & The purpose of the loan (Home, Business, Education, Auto, Other) \\
+  16 & HasCoSigner & object & Whether the loan has a co-signer (Yes/No) \\
+  17 & Default & object & Indicate whether the loan defaulted or not (0 = Did not default, 1 = Defaulted) \\ 
+   \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Correlation Matrix}
+    \small
+    \begin{adjustbox}{width=\textwidth}
+    \begin{tabular}{l*{10}{@{\extracolsep{4pt}}c}}
+        \toprule
+        & Age & Income & LoanAmt & CScore & MEmployed & NCLines & IRate & LTerm & DTIRatio & Default \\
+        \midrule
+        Age & 1.0000 & -0.0012 & -0.0022 & -0.0005 & -0.0003 & -0.0009 & -0.0011 & 0.0003 & -0.0047 & -0.1678 \\
+        Income & -0.0012 & 1.0000 & -0.0009 & -0.0014 & 0.0027 & -0.0020 & -0.0023 & -0.0010 & 0.0002 & -0.0991 \\
+        LoanAmt & -0.0022 & -0.0009 & 1.0000 & 0.0013 & 0.0028 & 0.0008 & -0.0023 & 0.0025 & 0.0011 & 0.0867 \\
+        CScore & -0.0005 & -0.0014 & 0.0013 & 1.0000 & 0.0006 & 0.0000 & 0.0004 & 0.0011 & -0.0010 & -0.0342 \\
+        MEmployed & -0.0003 & 0.0027 & 0.0028 & 0.0006 & 1.0000 & 0.0013 & 0.0001 & -0.0012 & 0.0018 & -0.0974 \\
+        NCLines & -0.0009 & -0.0020 & 0.0008 & 0.0000 & 0.0013 & 1.0000 & -0.0003 & -0.0002 & -0.0006 & 0.0283 \\
+        IRate & -0.0011 & -0.0023 & -0.0023 & 0.0004 & 0.0001 & -0.0003 & 1.0000 & 0.0009 & 0.0006 & 0.1313 \\
+        LTerm & 0.0003 & -0.0010 & 0.0025 & 0.0011 & -0.0012 & -0.0002 & 0.0009 & 1.0000 & 0.0023 & 0.0005 \\
+        DTIRatio & -0.0047 & 0.0002 & 0.0011 & -0.0010 & 0.0018 & -0.0006 & 0.0006 & 0.0023 & 1.0000 & 0.0192 \\
+        Default & -0.1678 & -0.0991 & 0.0867 & -0.0342 & -0.0974 & 0.0283 & 0.1313 & 0.0005 & 0.0192 & 1.0000 \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table}
+
+
+\section{Methods}
+\label{sec:meth}
+
+Use this section to present the methodologies that will generate results by
+analyzing the data. Suppose that the radius of a circle is $r$. Then its area is
+\begin{equation}
+  \label{eq:area}
+  \pi r^2.
+\end{equation}
+
+Equation~\eqref{eq:area} is interesting. \lipsum[1-4]
+
+Sometimes I don't want an equation to be numbered such as this one:
+\[
+  f(x) = \frac{1}{\sqrt{2\pi}} \exp\left( - \frac{x^2}{2} \right),
+\]
+which is the density of a standard normal variable.
+
+
+
+\section{Results}
+\label{sec:resu}
+
+\lipsum[1-4]
+
+
+\begin{tabular}{lrp{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}}
+\toprule
+{} &            Age &         Income &     Loan Amount &    Credit Score &  Months Employed &  Num Credit Lines &   Interest Rate &       Loan Term &       DTI Ratio &        Default \\
+\midrule
+mean  &      43.49 &   82499.30 &  127578.87 &     574.26 &       59.54 &        2.50 &      13.49 &      36.03 &       0.50 &       0.12 \\
+std   &      14.99 &   38963.01 &   70840.71 &     158.90 &       34.64 &        1.12 &       6.64 &      16.97 &       0.23 &       0.32 \\
+min   &      18.00 &   15000.00 &    5000.00 &     300.00 &        0.00 &        1.00 &       2.00 &      12.00 &       0.10 &       0.00 \\
+25\%   &      31.00 &   48825.50 &   66156.00 &     437.00 &       30.00 &        2.00 &       7.77 &      24.00 &       0.30 &       0.00 \\
+50\%   &      43.00 &   82466.00 &  127556.00 &     574.00 &       60.00 &        2.00 &      13.46 &      36.00 &       0.50 &       0.00 \\
+75\%   &      56.00 &  116219.00 &  188985.00 &     712.00 &       90.00 &        3.00 &      19.25 &      48.00 &       0.70 &       0.00 \\
+max   &      69.00 &  149999.00 &  249999.00 &     849.00 &      119.00 &        4.00 &      25.00 &      60.00 &       0.90 &       1.00 \\
+\bottomrule
+\end{tabular}
+
+Figure~\ref{fig:cars} shows the distance against the speed from this dataset.
+
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=\textwidth]{cars.pdf}
+  \caption{This is my first figure.}
+  \label{fig:cars}
+\end{figure}
+
+\section{Discussion}
+\label{sec:disc}
+
+The most challenging parts of the proposed work will be fitting and tuning each of the models. While straightforward in building them each model will require tuning using a variety of techniques. More difficult still will be testing more models than just those that have been proposed with perhaps even more specialized and advanced machine learning models like deep neural networks and even extreme gradient boosting as discussed in \citet{lai2020loan}. 
+\par The limitations of my work are twofold. With regards to my first aim of finding the most important variables, the dataset I'm working with contains 18 of probably the most common types of variables used in this setting however, other critical variables may be missing making my work in finding the most significant variables and seeing if they change with the type of loan bounded. In regards to my second aim of finding the "best" model, there's many limitations such as I won't be testing ALL possible models, instead I'll only be testing the most common and relatively simple with the possibility for some less employed more advanced models to be tested as well. Additionally, the dataset while "large" at approximately 250,000 observations businesses could be working with datasets magnitude of this size which if the models prove to all be very effective with very minor accuracy changes between them could see a shift in a much larger dataset of the "best" model.  
+\par Overall, I expect this project to go relatively smoothly as the project while it has complex components depending on the models employed and the level of tuning at the most base level is relatively straightforward. If things do go wrong for whatever reason there were multiple other datasets I found with similar variables and looking at default prediction which could be used to replace or even compliment potentially my current dataset.
+
+\bibliography{refs}
+\bibliographystyle{mcap}
+
+\end{document}
