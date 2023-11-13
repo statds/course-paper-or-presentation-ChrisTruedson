@@ -9,6 +9,7 @@
 \usepackage{adjustbox}
 \usepackage{booktabs}
 \usepackage[table]{xcolor}
+\usepackage{svg}
 
 % for space filling
 \usepackage{lipsum}
@@ -124,6 +125,12 @@ The data I'll be using primarily will come from the \href{https://www.kaggle.com
     \end{adjustbox}
 \end{table}
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{./code/categoricalvariablesdistributions.png}
+    \caption{Distributions of all the categorical variables}
+    \label{fig:catvars}
+\end{figure}
 
 \section{Methods}
 \label{sec:meth}
@@ -306,15 +313,68 @@ which is the density of a standard normal variable.
     \end{tabular}
 \end{table}
 
+\begin{table}[htbp]
+    \centering
+    \caption{Adaboost Results}
+    \begin{tabular}{lcccc}
+        \toprule
+        & Precision & Recall & F1-Score & Support \\
+        \midrule
+        0 & 0.89 & 0.99 & 0.94 & 45170 \\
+        1 & 0.56 & 0.08 & 0.15 & 5900 \\
+        Macro Avg & 0.73 & 0.54 & 0.54 & 51070 \\
+        Weighted Avg & 0.85 & 0.89 & 0.85 & 51070 \\
+        \midrule
+        Accuracy & & & 0.89 & 51070 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Adaboost Confusion Matrix}
+    \begin{tabular}{lcc}
+        \toprule
+        & Predicted 0 & Predicted 1 \\
+        \midrule
+        True 0 & 44782 & 388 \\
+        True 1 & 5403 & 497 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Bagging Results}
+    \begin{tabular}{lcccc}
+        \toprule
+        & Precision & Recall & F1-Score & Support \\
+        \midrule
+        0 & 0.89 & 1.00 & 0.94 & 45170 \\
+        1 & 0.75 & 0.02 & 0.04 & 5900 \\
+        Macro Avg & 0.82 & 0.51 & 0.49 & 51070 \\
+        Weighted Avg & 0.87 & 0.89 & 0.84 & 51070 \\
+        \midrule
+        Accuracy & & & 0.89 & 51070 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Bagging Confusion Matrix}
+    \begin{tabular}{lcc}
+        \toprule
+        & Predicted 0 & Predicted 1 \\
+        \midrule
+        True 0 & 45125 & 45 \\
+        True 1 & 5765 & 135 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 Figure~\ref{fig:cars} shows the distance against the speed from this dataset.
 
-
-\begin{figure}[tbp]
-  \centering
-  \includegraphics[width=\textwidth]{cars.pdf}
-  \caption{This is my first figure.}
-  \label{fig:cars}
-\end{figure}
 
 \section{Discussion}
 \label{sec:disc}
