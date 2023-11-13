@@ -137,17 +137,30 @@ which is the density of a standard normal variable.
         \midrule
         0 & 0.90 & 0.88 & 0.89 & 67681 \\
         1 & 0.20 & 0.24 & 0.22 & 8924 \\
+        Macro Avg & 0.55 & 0.56 & 0.55 & \\
+        Weighted Avg & 0.82 & 0.80 & 0.81 & \\
         \midrule
         Accuracy & & & 0.80 & 76605 \\
-        \midrule
-        \multicolumn{5}{l}{Macro Avg: Precision 0.55, Recall 0.56, F1-Score 0.55} \\
-        \multicolumn{5}{l}{Weighted Avg: Precision 0.82, Recall 0.80, F1-Score 0.81} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-
-
+\begin{table}[htbp]
+    \centering
+    \caption{Random Forest Results}
+    \begin{tabular}{lcccc}
+        \toprule
+        & Precision & Recall & F1-Score & Support \\
+        \midrule
+        0 & 0.89 & 1.00 & 0.94 & 67681 \\
+        1 & 0.71 & 0.03 & 0.06 & 8924 \\
+        Macro Avg & 0.80 & 0.51 & 0.50 & \\
+        Weighted Avg & 0.87 & 0.89 & 0.84 & \\
+        \midrule
+        Accuracy & & & 0.89 & 76605 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 \begin{tabular}{lrp{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}}
 \toprule
