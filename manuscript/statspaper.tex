@@ -7,6 +7,8 @@
 \usepackage{booktabs}
 \usepackage{natbib}
 \usepackage{adjustbox}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
 
 % for space filling
 \usepackage{lipsum}
@@ -80,6 +82,26 @@ The data I'll be using primarily will come from the \href{https://www.kaggle.com
 
 \begin{table}[htbp]
     \centering
+    \caption{Summary Statistics}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{l*{9}{@{\hspace{8pt}}p{0.5in}}}
+        \toprule
+        & Age & \hspace{4pt} Income & \hspace{12pt} Loan Amount & \hspace{8pt} Credit Score & Months Employed & Num Credit Lines & Interest Rate & Loan Term & DTI Ratio \\
+        \midrule
+        Mean & 43.49 & 82499.30 & 127578.87 & 574.26 & 59.54 & 2.50 & 13.49 & 36.03 & 0.50 \\
+        Std & 14.99 & 38963.01 & 70840.71 & 158.90 & 34.64 & 1.12 & 6.64 & 16.97 & 0.23 \\
+        Min & 18.00 & 15000.00 & 5000.00 & 300.00 & 0.00 & 1.00 & 2.00 & 12.00 & 0.10 \\
+        25\% & 31.00 & 48825.50 & 66156.00 & 437.00 & 30.00 & 2.00 & 7.77 & 24.00 & 0.30 \\
+        50\% & 43.00 & 82466.00 & 127556.00 & 574.00 & 60.00 & 2.00 & 13.46 & 36.00 & 0.50 \\
+        75\% & 56.00 & 116219.00 & 188985.00 & 712.00 & 90.00 & 3.00 & 19.25 & 48.00 & 0.70 \\
+        Max & 69.00 & 149999.00 & 249999.00 & 849.00 & 119.00 & 4.00 & 25.00 & 60.00 & 0.90 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
     \caption{Correlation Matrix}
     \small
     \begin{adjustbox}{width=\textwidth}
@@ -147,6 +169,19 @@ which is the density of a standard normal variable.
 
 \begin{table}[htbp]
     \centering
+    \caption{Decision Tree Confusion Matrix}
+    \begin{tabular}{lcc}
+        \toprule
+        & Predicted 0 & Predicted 1 \\
+        \midrule
+        True 0 & 59373 & 8308 \\
+        True 1 & 6825 & 2099 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
     \caption{Random Forest Results}
     \begin{tabular}{lcccc}
         \toprule
@@ -162,19 +197,49 @@ which is the density of a standard normal variable.
     \end{tabular}
 \end{table}
 
-\begin{tabular}{lrp{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}}
-\toprule
-{} &            Age &         Income &     Loan Amount &    Credit Score &  Months Employed &  Num Credit Lines &   Interest Rate &       Loan Term &       DTI Ratio &        Default \\
-\midrule
-mean  &      43.49 &   82499.30 &  127578.87 &     574.26 &       59.54 &        2.50 &      13.49 &      36.03 &       0.50 &       0.12 \\
-std   &      14.99 &   38963.01 &   70840.71 &     158.90 &       34.64 &        1.12 &       6.64 &      16.97 &       0.23 &       0.32 \\
-min   &      18.00 &   15000.00 &    5000.00 &     300.00 &        0.00 &        1.00 &       2.00 &      12.00 &       0.10 &       0.00 \\
-25\%   &      31.00 &   48825.50 &   66156.00 &     437.00 &       30.00 &        2.00 &       7.77 &      24.00 &       0.30 &       0.00 \\
-50\%   &      43.00 &   82466.00 &  127556.00 &     574.00 &       60.00 &        2.00 &      13.46 &      36.00 &       0.50 &       0.00 \\
-75\%   &      56.00 &  116219.00 &  188985.00 &     712.00 &       90.00 &        3.00 &      19.25 &      48.00 &       0.70 &       0.00 \\
-max   &      69.00 &  149999.00 &  249999.00 &     849.00 &      119.00 &        4.00 &      25.00 &      60.00 &       0.90 &       1.00 \\
-\bottomrule
-\end{tabular}
+\begin{table}[htbp]
+    \centering
+    \caption{Random Forest Confusion Matrix}
+    \begin{tabular}{lcc}
+        \toprule
+        & Predicted 0 & Predicted 1 \\
+        \midrule
+        True 0 & 67565 & 116 \\
+        True 1 & 8642 & 282 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{KNN Results}
+    \begin{tabular}{lcccc}
+        \toprule
+        & Precision & Recall & F1-Score & Support \\
+        \midrule
+        0 & 0.89 & 0.98 & 0.93 & 67681 \\
+        1 & 0.26 & 0.04 & 0.07 & 8924 \\
+        Macro Avg & 0.57 & 0.51 & 0.50 & \\
+        Weighted Avg & 0.81 & 0.87 & 0.83 & \\
+        \midrule
+        Accuracy & & & 0.87 & 76605 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{KNN Confusion Matrix}
+    \begin{tabular}{lcc}
+        \toprule
+        & Predicted 0 & Predicted 1 \\
+        \midrule
+        True 0 & 66639 & 1042 \\
+        True 1 & 8553 & 371 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 
 Figure~\ref{fig:cars} shows the distance against the speed from this dataset.
 
