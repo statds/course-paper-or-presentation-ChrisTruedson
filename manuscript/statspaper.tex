@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{natbib}
+\usepackage{adjustbox}
 
 % for space filling
 \usepackage{lipsum}
@@ -51,7 +52,7 @@ The data I'll be using primarily will come from the \href{https://www.kaggle.com
   \caption{Structure of the Loan Default Dataset}
   \label{tab:rv}
 \centering
-\begin{tabular}{rrrp{3.75in}}
+\begin{tabular}{rrrp{3.5in}}
   \toprule
 # & Column & Data Type & Description \\ 
   \midrule
@@ -77,6 +78,31 @@ The data I'll be using primarily will come from the \href{https://www.kaggle.com
 \end{tabular}
 \end{table}
 
+\begin{table}[htbp]
+    \centering
+    \caption{Correlation Matrix}
+    \small
+    \begin{adjustbox}{width=\textwidth}
+    \begin{tabular}{l*{10}{@{\extracolsep{4pt}}c}}
+        \toprule
+        & Age & Income & LoanAmt & CScore & MEmployed & NCLines & IRate & LTerm & DTIRatio & Default \\
+        \midrule
+        Age & 1.0000 & -0.0012 & -0.0022 & -0.0005 & -0.0003 & -0.0009 & -0.0011 & 0.0003 & -0.0047 & -0.1678 \\
+        Income & -0.0012 & 1.0000 & -0.0009 & -0.0014 & 0.0027 & -0.0020 & -0.0023 & -0.0010 & 0.0002 & -0.0991 \\
+        LoanAmt & -0.0022 & -0.0009 & 1.0000 & 0.0013 & 0.0028 & 0.0008 & -0.0023 & 0.0025 & 0.0011 & 0.0867 \\
+        CScore & -0.0005 & -0.0014 & 0.0013 & 1.0000 & 0.0006 & 0.0000 & 0.0004 & 0.0011 & -0.0010 & -0.0342 \\
+        MEmployed & -0.0003 & 0.0027 & 0.0028 & 0.0006 & 1.0000 & 0.0013 & 0.0001 & -0.0012 & 0.0018 & -0.0974 \\
+        NCLines & -0.0009 & -0.0020 & 0.0008 & 0.0000 & 0.0013 & 1.0000 & -0.0003 & -0.0002 & -0.0006 & 0.0283 \\
+        IRate & -0.0011 & -0.0023 & -0.0023 & 0.0004 & 0.0001 & -0.0003 & 1.0000 & 0.0009 & 0.0006 & 0.1313 \\
+        LTerm & 0.0003 & -0.0010 & 0.0025 & 0.0011 & -0.0012 & -0.0002 & 0.0009 & 1.0000 & 0.0023 & 0.0005 \\
+        DTIRatio & -0.0047 & 0.0002 & 0.0011 & -0.0010 & 0.0018 & -0.0006 & 0.0006 & 0.0023 & 1.0000 & 0.0192 \\
+        Default & -0.1678 & -0.0991 & 0.0867 & -0.0342 & -0.0974 & 0.0283 & 0.1313 & 0.0005 & 0.0192 & 1.0000 \\
+        \bottomrule
+    \end{tabular}
+    \end{adjustbox}
+\end{table}
+
+
 \section{Methods}
 \label{sec:meth}
 
@@ -100,36 +126,33 @@ which is the density of a standard normal variable.
 \section{Results}
 \label{sec:resu}
 
-Table~\ref{tab:rv} summarizes some example draws from some distributions.
-\lipsum[1-4]
+\lipsum[1]
 
-\begin{table}[tbp]
-  \caption{This is my first table.}
-  \label{tab:rv}
-\centering
-\begin{tabular}{rrr}
-  \toprule
-normal & poisson & gamma \\ 
-  \midrule
--0.110 & 4 & 2.401 \\ 
-  0.116 & 4 & 3.529 \\ 
-  -0.828 & 9 & 2.112 \\ 
-  -0.066 & 6 & 11.104 \\ 
-  0.219 & 3 & 4.815 \\ 
-  0.303 & 5 & 2.188 \\ 
-  0.544 & 0 & 8.050 \\ 
-  -2.617 & 8 & 3.646 \\ 
-  0.747 & 1 & 5.178 \\ 
-  -1.103 & 4 & 3.043 \\ 
-   \bottomrule
-\end{tabular}
+\begin{table}[htbp]
+    \centering
+    \caption{Decision Tree Results}
+    \begin{tabular}{lcccc}
+        \toprule
+        & Precision & Recall & F1-Score & Support \\
+        \midrule
+        0 & 0.90 & 0.88 & 0.89 & 67681 \\
+        1 & 0.20 & 0.24 & 0.22 & 8924 \\
+        \midrule
+        Accuracy & & & 0.80 & 76605 \\
+        \midrule
+        \multicolumn{5}{l}{Macro Avg: Precision 0.55, Recall 0.56, F1-Score 0.55} \\
+        \multicolumn{5}{l}{Weighted Avg: Precision 0.82, Recall 0.80, F1-Score 0.81} \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
-\begin{tabular}{lrrrrrrrrrr}
+
+
+
+\begin{tabular}{lrp{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}p{0.75in}}
 \toprule
-{} &            Age &         Income &     LoanAmount &    CreditScore &  MonthsEmployed &  NumCreditLines &   InterestRate &       LoanTerm &       DTIRatio &        Default \\
+{} &            Age &         Income &     Loan Amount &    Credit Score &  Months Employed &  Num Credit Lines &   Interest Rate &       Loan Term &       DTI Ratio &        Default \\
 \midrule
-count &  255347.00 &  255347.00 &  255347.00 &  255347.00 &   255347.00 &   255347.00 &  255347.00 &  255347.00 &  255347.00 &  255347.00 \\
 mean  &      43.49 &   82499.30 &  127578.87 &     574.26 &       59.54 &        2.50 &      13.49 &      36.03 &       0.50 &       0.12 \\
 std   &      14.99 &   38963.01 &   70840.71 &     158.90 &       34.64 &        1.12 &       6.64 &      16.97 &       0.23 &       0.32 \\
 min   &      18.00 &   15000.00 &    5000.00 &     300.00 &        0.00 &        1.00 &       2.00 &      12.00 &       0.10 &       0.00 \\
