@@ -7,8 +7,8 @@
 \usepackage{booktabs}
 \usepackage{natbib}
 \usepackage{adjustbox}
-\usepackage[margin=1in]{geometry}
 \usepackage{booktabs}
+\usepackage[table]{xcolor}
 
 % for space filling
 \usepackage{lipsum}
@@ -250,6 +250,44 @@ which is the density of a standard normal variable.
         XGBoost & 0.8865 \\
         LightGBM & 0.8866 \\
         CatBoost & 0.8860 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Neural Network Results}
+    \begin{tabular}{cccccc}
+        \toprule
+        NumHiddenLayers & NumUnits & DropoutRate & Accuracy \\
+        \midrule
+        \rowcolor{green!25}2 & 32 & 0.3 & 0.887742 \\
+        2 & 32 & 0.5 & 0.887253 \\
+        2 & 32 & 0.7 & 0.885628 \\
+        2 & 64 & 0.3 & 0.887214 \\
+        2 & 64 & 0.5 & 0.887037 \\
+        2 & 64 & 0.7 & 0.887351 \\
+        2 & 128 & 0.3 & 0.887292 \\
+        2 & 128 & 0.5 & 0.887449 \\
+        2 & 128 & 0.7 & 0.886352 \\
+        3 & 32 & 0.3 & 0.885040 \\
+        3 & 32 & 0.5 & 0.884570 \\
+        3 & 32 & 0.7 & 0.884472 \\
+        3 & 64 & 0.3 & 0.885451 \\
+        3 & 64 & 0.5 & 0.884472 \\
+        3 & 64 & 0.7 & 0.884472 \\
+        3 & 128 & 0.3 & 0.885941 \\
+        3 & 128 & 0.5 & 0.884472 \\
+        3 & 128 & 0.7 & 0.884472 \\
+        4 & 32 & 0.3 & 0.884472 \\
+        4 & 32 & 0.5 & 0.884472 \\
+        4 & 32 & 0.7 & 0.884472 \\
+        4 & 64 & 0.3 & 0.884511 \\
+        4 & 64 & 0.5 & 0.884531 \\
+        4 & 64 & 0.7 & 0.884472 \\
+        4 & 128 & 0.3 & 0.884668 \\
+        4 & 128 & 0.5 & 0.884511 \\
+        4 & 128 & 0.7 & 0.884472 \\
         \bottomrule
     \end{tabular}
 \end{table}
