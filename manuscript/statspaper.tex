@@ -256,7 +256,7 @@ which is the density of a standard normal variable.
 
 \begin{table}[htbp]
     \centering
-    \caption{Neural Network Results}
+    \caption{FF Neural Network Results}
     \begin{tabular}{cccccc}
         \toprule
         NumHiddenLayers & NumUnits & DropoutRate & Accuracy \\
@@ -288,6 +288,20 @@ which is the density of a standard normal variable.
         4 & 128 & 0.3 & 0.884668 \\
         4 & 128 & 0.5 & 0.884511 \\
         4 & 128 & 0.7 & 0.884472 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Neural Network Results}
+    \begin{tabular}{lc}
+        \toprule
+        Model & Accuracy \\
+        \midrule
+        FFNN & 0.8877 \\
+        CNN & 0.8878 \\
+        RNN & 0.8872 \\
         \bottomrule
     \end{tabular}
 \end{table}
