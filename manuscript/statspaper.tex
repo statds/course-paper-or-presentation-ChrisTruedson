@@ -449,6 +449,7 @@ The Adaboost model sees strong performance in non-defaulters as has been the tre
         Accuracy & & & 0.89 & 51070 \\
         \bottomrule
     \end{tabular}
+    \label{table:boostingResults}
 \end{table}
 
 \begin{table}[htbp]
@@ -462,7 +463,18 @@ The Adaboost model sees strong performance in non-defaulters as has been the tre
         True 1 & 5765 & 135 \\
         \bottomrule
     \end{tabular}
+    \label{table:boostingConfusionMatrix}
 \end{table}
+
+Finally as has become the trend the Boosting model's results shown above in Table \ref{table:boostingResults} and Table \ref{table:boostingConfusionMatrix} show the story we've seen repeatedly in modeling this data set. The model demonstrates strong performance for non-defaulters, with a precision of 0.89 and a near perfect recall of 1.00, for a F1-score of 0.94. The model has shown to be highly effective in identifying non-default cases and has minimal rate of misclassification for default cases as non-defaults.
+
+For defaulters, the model has a moderately strong precision of 0.75 meaning when it predicts default it's largely correct. With that said the recall is terrible at 0.02, meaning only 2\% of actual default cases are correctly identified as such. All combining for an F1-score of 0.04 to highlight this performance issue.
+
+The macro average scores are 0.82 precision, 0.51 recall, and 0.49 for F1-score, showing the imbalance in the data we've seen throughout models. The weighted average scores are 0.87 precision, 0.89 recall, and 0.84 for F1-score, these higher scores mask the poor performance among predicting defaulters due to the data set's larger sample of non-defaulters.
+
+The confusion matrix shown in Table \ref{table:boostingConfusionMatrix} adds further to the results already discussed. Out of the 45,170 actual non-defaulters 45,125 were correctly identified and just 45 were incorrectly predicted as defaulters. Whereas out of 5,900 actual defaulters only 135 were correctly identified, with the significant majority being misclassified as non-defaulters highlighting the very large false negative rate.
+
+The bagging model shows good performance in non-defaulters as nearly every other model does, largely influenced by the nature of the data set it was trained on. The overall accuracy of the model comes out to 0.89, driven by the imbalance in the data set.
 
 \section{Discussion}
 \label{sec:disc}
