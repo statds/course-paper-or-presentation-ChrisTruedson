@@ -289,13 +289,13 @@ The overall model accuracy is 0.89, which, while high, is largely driven by its 
     \label{table:kNNConfusionMatrix}
 \end{table}
 
-The k nearest number model's results as shown above in Table ~\ref{table:kNNResults} and Table ~\ref{table:kNNConfusionMatrix} a continuation of the results we've seen in the previous two models. For those classified as 0 (non-defaulters) the model shows strong performance with a precision of 0.89 and an even higher recall of 0.98, culminating with an F1-score of 0.93. This indicates the model is highly effective in identifying non-default cases, with a tendency to misclassify certain default cases as non-defaults.
+The k nearest number model's results as shown above in Table ~\ref{table:kNNResults} and Table ~\ref{table:kNNConfusionMatrix} show a continuation of the results we've seen in the previous two models. For those classified as 0 (non-defaulters) the model shows strong performance with a precision of 0.89 and an even higher recall of 0.98, culminating with an F1-score of 0.93. This indicates the model is highly effective in identifying non-default cases, with a tendency to misclassify certain default cases as non-defaults.
 
 For defaulters, the model's precision is low at 0.26, meaning only about 26\% of the instances predicted as default are actual defaults. The recall is far lower at 0.04 meaning the model only correctly identifies a mere 4\% of all actual default cases. The F1-score reflects this at 0.07, highlighting the poor performance in predicting defaults.
 
 The macro average scores are moderate (0.57 precision, 0.51 recall, and 0.50 F1-score), further showing the significant disparity between predicting between non-defaulters and defaulters. The weighted average scores (0.81 precision, 0.87 recall, and 0.83 F1-score) are higher, but is merely reflecting the models better performance among the majority group.
 
-The confusion matrix verifies these findings as of the 67,681 actual non-defaulters, 66,639 were correctly identified, with 1,042 incorrectly labeled as defaulters. Out of the 8,924 actual defaulters, only 371 were correctly identified, with a substantial 8,553 misclassified as non-defaulters. 
+The confusion matrix shown in Table ~\ref{table:kNNConfusionMatrix} verifies these findings as of the 67,681 actual non-defaulters, 66,639 were correctly identified, with 1,042 incorrectly labeled as defaulters. Out of the 8,924 actual defaulters, only 371 were correctly identified, with a substantial 8,553 misclassified as non-defaulters. 
 
 The KNN model demonstrates a strong ability to identify non-defaults as seen with the other models and evidenced by its high precision, recall, and F1-score for the non-defaulter group with a substantial amount of true negatives. However, its capacity for to accurately identify default cases is weak shown by the aforementioned metrics and the amount of false negatives.
 
@@ -313,7 +313,16 @@ The overall model accuracy score stands at 0.87, largely influenced by its effec
         CatBoost & 0.8860 \\
         \bottomrule
     \end{tabular}
+    \label{table:gradientBoostingResults}
 \end{table}
+
+The gradient boosting models shown above in Table ~\ref{table:gradientBoostingResults} suggest much of the same results as previous. Of the three gradient boosting model approaches attempted the accuracy results are very similar among all the models and suggest a high degree of accuracy. With that said, these models suffere from the same flaws as the models reviewed previously in that they are good at predicting among the majority group of non-defaulters but struggle in predicting defaults correctly.
+
+Looking firstly at the XGBoost (Extreme Gradient Boosting) model we see an accuracy of 0.8865. An accuracy of 88.65\% indicates that the model correctly predicted the loan default status for this percentage of cases over the validation data set.
+
+Next, the LightGBM (Light Gradient Boosting Model) we see an accuracy just above that of the XGBoost model and the highest of the three gradient boost models tested. An accuracy of 88.66\% indicates that the model correctly predicted the loan default status for this percentage of cases over the validation data set.
+
+Finally, the CatBoost (Categorical Boost) model is marginally lower than the other two but still very close to all the others tested indicating a high level of predictability. An accuracy of 88.60\% indicates that the model correctly predicted the loan default status for this percentage of cases over the validation data set.
 
 \begin{table}[htbp]
     \centering
@@ -352,6 +361,8 @@ The overall model accuracy score stands at 0.87, largely influenced by its effec
         \bottomrule
     \end{tabular}
 \end{table}
+
+
 
 \begin{table}[htbp]
     \centering
