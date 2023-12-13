@@ -149,20 +149,7 @@ The data I'll be using will come from the \href{https://www.kaggle.com/datasets/
 \section{Methods}
 \label{sec:meth}
 
-Use this section to present the methodologies that will generate results by
-analyzing the data. Suppose that the radius of a circle is $r$. Then its area is
-\begin{equation}
-  \label{eq:area}
-  \pi r^2.
-\end{equation}
-
-Equation~\eqref{eq:area} is interesting.
-
-Sometimes I don't want an equation to be numbered such as this one:
-\[
-  f(x) = \frac{1}{\sqrt{2\pi}} \exp\left( - \frac{x^2}{2} \right),
-\]
-which is the density of a standard normal variable.
+A variety of models will be used in an attempt to best predict loan default. The first model that will be used is a decision tree. These models are great thanks to there interpretability, their ability to handle both numerical and categorical data with ease, the little if any data preprocessing required, and its ability to identify the most important features. Some of the drawbacks of this model type is its prone to overfitting, the instability when tested with multiple data sets, its bias if one gorup/class if more common than the other (seen in our data), and it's poor ability in extrapolating beyond the range of the training data.
 
 
 
@@ -478,6 +465,8 @@ The bagging model shows good performance in non-defaulters as nearly every other
 
 \section{Discussion}
 \label{sec:disc}
+
+
 
 The most challenging parts of the proposed work will be fitting and tuning each of the models. While straightforward in building them each model will require tuning using a variety of techniques. More difficult still will be testing more models than just those that have been proposed with perhaps even more specialized and advanced machine learning models like deep neural networks and even extreme gradient boosting as discussed in \citet{lai2020loan}. 
 \par The limitations of my work are twofold. With regards to my first aim of finding the most important variables, the dataset I'm working with contains 18 of probably the most common types of variables used in this setting however, other critical variables may be missing making my work in finding the most significant variables and seeing if they change with the type of loan bounded. In regards to my second aim of finding the "best" model, there's many limitations such as I won't be testing ALL possible models, instead I'll only be testing the most common and relatively simple with the possibility for some less employed more advanced models to be tested as well. Additionally, the dataset while "large" at approximately 250,000 observations businesses could be working with datasets magnitude of this size which if the models prove to all be very effective with very minor accuracy changes between them could see a shift in a much larger dataset of the "best" model.  
