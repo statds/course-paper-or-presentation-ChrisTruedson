@@ -478,7 +478,45 @@ The bagging model shows good performance in non-defaulters as nearly every other
 \section{Discussion}
 \label{sec:disc}
 
+\begin{table}[htbp]
+\centering
+\caption{Best Overall Accuracy Scores of Various Models, Sorted from Best to Worst}
+\label{tab:accuracies}
+\begin{tabular}{lc}
+\toprule
+Model Type          & Best Accuracy \\
+\midrule
+Random Forest       & 0.89 \\
+Adaboost            & 0.89 \\
+Bagging             & 0.89 \\
+CNN                 & 0.8878 \\
+KNN                 & 0.8877 \\
+FF Neural Network   & 0.8877 \\
+RNN                 & 0.8872 \\
+LightGBM            & 0.8866 \\
+XGBoost             & 0.8865 \\
+CatBoost            & 0.8860 \\
+Decision Tree       & 0.80 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
+\begin{table}[htbp]
+\centering
+\caption{Precision and Recall for Type 1 of Various Models, Sorted by Precision and Recall}
+\label{tab:precision_recall}
+\begin{tabular}{lcc}
+\toprule
+Model Type      & Precision Type 1 & Recall Type 1 \\
+\midrule
+Bagging         & 0.75 & 0.02 \\
+Random Forest   & 0.71 & 0.03 \\
+Adaboost        & 0.56 & 0.08 \\
+KNN             & 0.26 & 0.04 \\
+Decision Tree   & 0.20 & 0.24 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 The most challenging parts of the proposed work will be fitting and tuning each of the models. While straightforward in building them each model will require tuning using a variety of techniques. More difficult still will be testing more models than just those that have been proposed with perhaps even more specialized and advanced machine learning models like deep neural networks and even extreme gradient boosting as discussed in \citet{lai2020loan}. 
 \par The limitations of my work are twofold. With regards to my first aim of finding the most important variables, the dataset I'm working with contains 18 of probably the most common types of variables used in this setting however, other critical variables may be missing making my work in finding the most significant variables and seeing if they change with the type of loan bounded. In regards to my second aim of finding the "best" model, there's many limitations such as I won't be testing ALL possible models, instead I'll only be testing the most common and relatively simple with the possibility for some less employed more advanced models to be tested as well. Additionally, the dataset while "large" at approximately 250,000 observations businesses could be working with datasets magnitude of this size which if the models prove to all be very effective with very minor accuracy changes between them could see a shift in a much larger dataset of the "best" model.  
