@@ -205,13 +205,13 @@ In order to find a model best suited to predicting default based on the provided
 
 The decision tree model's results as shown in Table ~\ref{table:decisionTreeResults} and Table ~\ref{table:decisionTreeConfusionMatrix} show the strengths and weaknesses of this particular model. For those classified as 0 (non-defaulters), the model shows high precision at 0.90, indicating that when it predicts a loan will not default, it is correct 90\% of the time. The recall for non-defaulters is slightly lower at 0.88, suggesting that the model correctly identifies 88\% of all actual non-default cases. The F1-score (a combination score balancing precision and recall) comes out to 0.89, suggesting strong performance among those that don't default.
 
-By contrast, the model's performance on classified as 1 (defaulters) is markedly weaker. The precision score for this group is only 0.20, meaning only 20\% of the instances predicted as defaults were actual defaults. The recall is slightly higher at 0.24, indicating that the model identifies 24\% of all actual default cases. The F1-score for this group comes out to 0.22, reflecting the models limited effectiveness in accurately predicting defaults.
+By contrast, the model's performance on those classified as 1 (defaulters) is markedly weaker. The precision score for this group is only 0.20, meaning only 20\% of the instances predicted as defaults were actual defaults. The recall is slightly higher at 0.24, indicating that the model identifies 24\% of all actual default cases. The F1-score for this group comes out to 0.22, reflecting the models limited effectiveness in accurately predicting defaults.
 
 The macro average, treating both groups equally into it's weight, shows moderate scores across precision, recall, and F1-scores (approximately 0.55), highlighting the disparity in model performance between the non-default group and the default group. The weighted average, considering this imbalance between groups, presents a better view (at around 0.81) due to it being heavily influenced by the models better performance on the far larger non-default group.
 
-The overall accuracy of the model comes out to 0.80, meaning it correctly predicts default correctly 80\% of the time across the entire validation data set. However, this high accuracy is partly misleading due to the significant group imbalance we observe with the model being far more effective at identifying non-defaulters than defaulters.
-
 In looking closer at Table ~\ref{table:decisionTreeConfusionMatrix} the same results are further verified. Out of the 67,681 actual non-defaulters the model correctly identified 59,373 (True Negatives). However, it incorrectly predicted 8,308 as defaulters (False Positives). For the 8,924 actual defaulters, the model correctly predicted only 2,099 as defaulters (True Positives) but misclassified 6,825 as non-defaulters (False Negatives). Again further highlighting the models propensity towards false positives, showing how the model tends to fail in classifying defaulters.
+
+The overall accuracy of the model comes out to 0.80, meaning it correctly predicts default correctly 80\% of the time across the entire validation data set. However, this high accuracy is partly misleading due to the significant group imbalance we observe with the model being far more effective at identifying non-defaulters than defaulters.
 
 \begin{table}[htbp]
     \centering
@@ -228,6 +228,7 @@ In looking closer at Table ~\ref{table:decisionTreeConfusionMatrix} the same res
         Accuracy & & & 0.89 & 76605 \\
         \bottomrule
     \end{tabular}
+    \label{table:randomForestResults}
 \end{table}
 
 \begin{table}[htbp]
@@ -241,7 +242,20 @@ In looking closer at Table ~\ref{table:decisionTreeConfusionMatrix} the same res
         True 1 & 8642 & 282 \\
         \bottomrule
     \end{tabular}
+    \label{table:randomForestConfusionMatrix}
 \end{table}
+
+The random forest model's results as shown in Table ~\ref{table:randomForestResults} and Table ~\ref{table:randomForestConfusionMatrix} show the many of the same strengths and weaknesses we saw with the previous decision tree model. For those classified as 0 (non-defaulters), the model has a high level precision at 0.89 and an excellent recall of 1.00, which lead in turn to an F1-score of 0.94. These values indicate that the model is almost perfect in identifying non-default cases but has a slight tendency to mislabel a few default cases as non-defaults.
+
+Among those classified as 1 (defaulters) the precision is 0.71, suggesting that when the model predicts a default, it is correct 71\% of the time, a fairly good percentage. However, the recall is extremely low at 0.03, meaning the model identifies only 3\% of the actual default cases present. The F1-score for this group is just 0.06, reflecting the model's poor performance in predicting defaults.
+
+The macro average scores are lower (0.80 precision, 0.89 recall, and 0.50 for F1-score) suggesting there's a significant imbalance in the model's ability to predict non-defaulters and defaulters as seen previously. The weighted average scores (0.87 precision, 0.89 recall, and 0.84 F1-score) are higher, this reflects the influence of the model's strong performance in the majority group of non-defaulters.
+
+In looking closer at Table ~\ref{table:randomForestConfusionMatrix} again the results above are verified. Out of the 67,681 actual non-defaulters 67,565 were correctly identified, with only 116 incorrectly predicted as defaulters. On the other hand of the 8,924 actual defaulters, only 282 were correctly identified, while a significant number 8,642, were incorrectly labeled as non-defaulters.
+
+The random forest model appears to demonstrate strong performance in predicting non-defaults, evidenced by the high precision, recall, and F1-score for group 0, as well as the large number of true negatives. However, its ability to identify actual default cases is pretty terrible, as shown by the extremely low reacall and F1-score for group 1, and the high number of false negatives.
+
+The overall model accuracy is 0.89, which, while high, is largely driven by its success in correctly predicting the majority class of non-defaulters and masks the model's severe limitations in accurately identifying default cases.
 
 \begin{table}[htbp]
     \centering
