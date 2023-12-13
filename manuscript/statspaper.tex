@@ -316,7 +316,7 @@ The overall model accuracy score stands at 0.87, largely influenced by its effec
     \label{table:gradientBoostingResults}
 \end{table}
 
-The gradient boosting models shown above in Table ~\ref{table:gradientBoostingResults} suggest much of the same results as previous. Of the three gradient boosting model approaches attempted the accuracy results are very similar among all the models and suggest a high degree of accuracy. With that said, these models suffere from the same flaws as the models reviewed previously in that they are good at predicting among the majority group of non-defaulters but struggle in predicting defaults correctly.
+The gradient boosting models results shown above in Table ~\ref{table:gradientBoostingResults} suggest much of the same results as previous. Of the three gradient boosting model approaches attempted the accuracy results are very similar among all the models and suggest a high degree of accuracy. With that said, these models suffere from the same flaws as the models reviewed previously in that they are good at predicting among the majority group of non-defaulters but struggle in predicting defaults correctly.
 
 Looking firstly at the XGBoost (Extreme Gradient Boosting) model we see an accuracy of 0.8865. An accuracy of 88.65\% indicates that the model correctly predicted the loan default status for this percentage of cases over the validation data set.
 
@@ -360,9 +360,16 @@ Finally, the CatBoost (Categorical Boost) model is marginally lower than the oth
         4 & 128 & 0.7 & 0.884472 \\
         \bottomrule
     \end{tabular}
+    \label{table:fFNeuralNetworkResults}
 \end{table}
 
+The feedforward neural network model results with variations for tuning shown above in Table \ref{table:fFNeuralNetworkResults} shows much of the same with regards to accuracy levels, strengths, and weaknesses. This neural network was run under a variety of configurations varying the number of hidden layers, the number of units/neurons, and the dropout rate. The primary metric being used to evaluate the models being their accuracy.
 
+The accuracies of the models range from 88.47\% to 88.77\%. These values indicate the proportion of the total number of predictions that were correct. The highest accuracy achieved was 88.7742\%, with a configuration of 2 hidden layers, 32 units, and a dropout rate of 0.3. 
+
+Generally it appeared models with 2 hidden layers performed marginally better than those with 3 or 4 layers, suggesting that additional complexity does not necessarily translate to better performance under this particular data set. The varitaion in accuracy across different dropout rates is relatively small, indicating that the models are somewhat robust to this parameter. However, the highest accuracy is achieved with a lower dropout rate (0.3), suggesting that a higher drop out rate leading to too much regularization might be detrimental in this case.
+
+The FFNN models demonstrate good performance in predicting loan defaults. However, as models above due to the nature of the data set much of the accuracy is skewed due to the models being far better at predicting the majority group of non-default over than the default group.
 
 \begin{table}[htbp]
     \centering
