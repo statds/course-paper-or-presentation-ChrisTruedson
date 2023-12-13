@@ -383,7 +383,14 @@ The FFNN models demonstrate good performance in predicting loan defaults. Howeve
         RNN & 0.8872 \\
         \bottomrule
     \end{tabular}
+    \label{table:neuralNetworkResults}
 \end{table}
+
+The nerual network results shown above in table \ref{table:neuralNetworkResults} shows the results for a variety of nerual network types, taking the best feedforward results from Table \ref{table:fFNeuralNetworkResults}, and adding results for a CNN (Convolutional Neural Network), and a RNN (Recurrent Neural Network) model.
+
+Looking at the models not previously discussed starting with the CNN we sigh a marginally higher accuracy score for this model of 88.78\% a 0.01\% improvement over the FFNN. The RNN was the lowest scoring of the pact for neural network models with an accuracy score of 88.72\%.
+
+All three neural network models demonstrate comparable and high accuracy in predicting loan default outcomes but with little overall difference among them. These accuracy scores aren't the whole picture as discussed previously as all these models are seeing misleadingly high accuracy scores due to the large nature of non-defaults present in the data set and the propensity of the models to choose non-default.
 
 \begin{table}[htbp]
     \centering
@@ -414,6 +421,8 @@ The FFNN models demonstrate good performance in predicting loan defaults. Howeve
         \bottomrule
     \end{tabular}
 \end{table}
+
+
 
 \begin{table}[htbp]
     \centering
