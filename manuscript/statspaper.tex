@@ -159,6 +159,8 @@ After this various boosting methods were attempted such as XGBoost (Extreme Grad
 
 The next approach looked at neural networks starting with a Feedforward Neural Network (FFNN) with varying configurations for the number of hidden layers, units (neurons), and dropout rate. The models vary from having 2-4 hidden layers. More hidden layers have the potential to capture more complex patterns, but also increase the risk of overfitting and require more computational resources. The number of units in the hidden layers ranged form 32 to 128. Increasing the number of units can lead to a more complex model, but similar to the number of layers, increase the risk of overfitting and computational complexity. Finally the dropout rate ranged from 0.3 to 0.7. This regularization technique is used to prevent overfitting by randomly setting a fraction of the input units to 0 at each update during training. A higher dropout rate means more units are ignored, improving regularization but possibly leading to underfitting.
 
+FFNN's are regarded as the simplest type of neural network as the information moves in only one direction, forward, from the input nodes, through the hidden nodes, to the output nodes. Looking at other neural networks to compare CNN (Convolutional Neural Networks) and RNN (Recurrent Neural Networks) were used for comparison. CNNs were originally designed for image processing with a structure that is best suited for capturing spatial hierarchies in data. RNNs are designed to work with sequence data. They work by capturing information ins equences by having loops within them, allowing information to persist and are usually preferred for tasks like time-series, text, or speech, data.
+
 
 
 \section{Results}
