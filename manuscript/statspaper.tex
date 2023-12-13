@@ -49,7 +49,7 @@ A discussion concludes in Section~\ref{sec:disc}.
 \section{Data}
 \label{sec:data}
 
-The data I'll be using primarily will come from the \href{https://www.kaggle.com/datasets/nikhil1e9/loan-default}{Loan Default Prediction Dataset} on Kaggle. Itself is a dataset from a Coursera competition \href{https://www.coursera.org/projects/data-science-coding-challenge-loan-default-prediction}{Loan Default Prediction Challenge} featuring 255,347 observations and 18 variables with various demographic and financial data including but not limited to the borrowers age, their income, their education, their credit score, the loan amount, the type of loan, and various other metrics which provide a full picture of the loan, the borrower, and the borrower's financial situation.
+The data I'll be using will come from the \href{https://www.kaggle.com/datasets/nikhil1e9/loan-default}{Loan Default Prediction Dataset} on Kaggle. Itself is a dataset from a Coursera competition \href{https://www.coursera.org/projects/data-science-coding-challenge-loan-default-prediction}{Loan Default Prediction Challenge} featuring 255,347 observations and 18 variables with various demographic and financial data including but not limited to the borrowers age, their income, their education, their credit score, the loan amount, the type of loan, and various other metrics which provide a full picture of the loan, the borrower, and the borrower's financial situation.
 
 \begin{table}[tbp]
   \caption{Structure of the Loan Default Dataset}
@@ -156,7 +156,7 @@ analyzing the data. Suppose that the radius of a circle is $r$. Then its area is
   \pi r^2.
 \end{equation}
 
-Equation~\eqref{eq:area} is interesting. \lipsum[1-4]
+Equation~\eqref{eq:area} is interesting.
 
 Sometimes I don't want an equation to be numbered such as this one:
 \[
@@ -169,7 +169,7 @@ which is the density of a standard normal variable.
 \section{Results}
 \label{sec:resu}
 
-\lipsum[1]
+In order to find a model best suited to predicting default based on the provided data I ran several models such as a decision tree, a random forest, KNN, gradient boosting, various neural networks, adaboost, and bagging models. The data was split into a training and validation group of approximately 60\% training and 40\% validation (76,605 data points, with a significant imbalance between non-defaulters totaling 67,681 and defaulters making up the remaining 8,924.
 
 \begin{table}[htbp]
     \centering
@@ -186,6 +186,7 @@ which is the density of a standard normal variable.
         Accuracy & & & 0.80 & 76605 \\
         \bottomrule
     \end{tabular}
+    \label{table:decisionTreeResults}
 \end{table}
 
 \begin{table}[htbp]
@@ -199,7 +200,18 @@ which is the density of a standard normal variable.
         True 1 & 6825 & 2099 \\
         \bottomrule
     \end{tabular}
+    \label{table:decisionTreeConfusionMatrix}
 \end{table}
+
+The decision tree model's results as shown in Table ~\ref{table:decisionTreeResults} and Table ~\ref{table:decisionTreeConfusionMatrix} show the strengths and weaknesses of this particular model. For those classified as 0 (non-defaulters), the model shows high precision at 0.90, indicating that when it predicts a loan will not default, it is correct 90\% of the time. The recall for non-defaulters is slightly lower at 0.88, suggesting that the model correctly identifies 88\% of all actual non-default cases. The F1-score (a combination score balancing precision and recall) comes out to 0.89, suggesting strong performance among those that don't default.
+
+By contrast, the model's performance on classified as 1 (defaulters) is markedly weaker. The precision score for this group is only 0.20, meaning only 20\% of the instances predicted as defaults were actual defaults. The recall is slightly higher at 0.24, indicating that the model identifies 24\% of all actual default cases. The F1-score for this group comes out to 0.22, reflecting the models limited effectiveness in accurately predicting defaults.
+
+The macro average, treating both groups equally into it's weight, shows moderate scores across precision, recall, and F1-scores (approximately 0.55), highlighting the disparity in model performance between the non-default group and the default group. The weighted average, considering this imbalance between groups, presents a better view (at around 0.81) due to it being heavily influenced by the models better performance on the far larger non-default group.
+
+The overall accuracy of the model comes out to 0.80, meaning it correctly predicts default correctly 80\% of the time across the entire validation data set. However, this high accuracy is partly misleading due to the significant group imbalance we observe with the model being far more effective at identifying non-defaulters than defaulters.
+
+In looking closer at Table ~\ref{table:decisionTreeConfusionMatrix} the same results are further verified. Out of the 67,681 actual non-defaulters the model correctly identified 59,373 (True Negatives). However, it incorrectly predicted 8,308 as defaulters (False Positives). For the 8,924 actual defaulters, the model correctly predicted only 2,099 as defaulters (True Positives) but misclassified 6,825 as non-defaulters (False Negatives). Again further highlighting the models propensity towards false positives, showing how the model tends to fail in classifying defaulters.
 
 \begin{table}[htbp]
     \centering
@@ -386,9 +398,6 @@ which is the density of a standard normal variable.
         \bottomrule
     \end{tabular}
 \end{table}
-
-Figure~\ref{fig:cars} shows the distance against the speed from this dataset.
-
 
 \section{Discussion}
 \label{sec:disc}
