@@ -483,43 +483,47 @@ In attempting to build and find the best model type for predicting loan default 
 This is good for businesses in the sense that the models succeed in allowing those that are qualified to get a loan and will likely not default to a very high degree increasing business, but they fail in protecting the bank or financial institution from stopping those that will default from getting a loan. While perhaps good for the consumer in that few are turned away and very very few who are qualified are mistakenly turned away the institution is at risk due the propensity towards group 1 (defaulters) misclassificaiton.
 
 \begin{table}[htbp]
-\centering
-\caption{Best Overall Accuracy Scores of Various Models, Sorted from Best to Worst}
-\label{tab:accuracies}
-\begin{tabular}{lc}
-\toprule
-Model Type          & Best Accuracy \\
-\midrule
-Random Forest       & 0.89 \\
-Adaboost            & 0.89 \\
-Bagging             & 0.89 \\
-CNN                 & 0.8878 \\
-KNN                 & 0.8877 \\
-FF Neural Network   & 0.8877 \\
-RNN                 & 0.8872 \\
-LightGBM            & 0.8866 \\
-XGBoost             & 0.8865 \\
-CatBoost            & 0.8860 \\
-Decision Tree       & 0.80 \\
-\bottomrule
-\end{tabular}
+    \centering
+    \caption{Best Overall Accuracy Scores of Various Models, Sorted from Best to Worst}
+    \label{tab:accuracies}
+    \begin{tabular}{lc}
+        \toprule
+        Model Type          & Best Accuracy \\
+        \midrule
+        Random Forest       & 0.89 \\
+        Adaboost            & 0.89 \\
+        Bagging             & 0.89 \\
+        CNN                 & 0.8878 \\
+        KNN                 & 0.8877 \\
+        FF Neural Network   & 0.8877 \\
+        RNN                 & 0.8872 \\
+        LightGBM            & 0.8866 \\
+        XGBoost             & 0.8865 \\
+        CatBoost            & 0.8860 \\
+        Decision Tree       & 0.80 \\
+        \bottomrule
+    \end{tabular}
+    \label{table:overallModelResults}
 \end{table}
 
+As shown above in Table \ref{table:overallModelResults} we see the random forest model achieve the highest overall accuracy score tied with the Adaboost model and Bagging approach at 89\%. This meaning that 89\% of the time the overall the model made the right prediction of default or no default. However, as previously discussed this score isn't entirely true and is heavily influenced by these models success among the majority class (non-defaulters) when infact the picture when lookign at the default class paints a much more problematic picture. Overall it should be noted that the range of accuracy across all model types is from 80\% to 89\% suggesting all the models perform very similarly.
+
 \begin{table}[htbp]
-\centering
-\caption{Precision and Recall for Type 1 of Various Models, Sorted by Precision and Recall}
-\label{tab:precision_recall}
-\begin{tabular}{lcc}
-\toprule
-Model Type      & Precision Type 1 & Recall Type 1 \\
-\midrule
-Bagging         & 0.75 & 0.02 \\
-Random Forest   & 0.71 & 0.03 \\
-Adaboost        & 0.56 & 0.08 \\
-KNN             & 0.26 & 0.04 \\
-Decision Tree   & 0.20 & 0.24 \\
-\bottomrule
-\end{tabular}
+    \centering
+    \caption{Precision and Recall for Type 1 of Various Models, Sorted by Precision and Recall}
+    \label{tab:precision_recall}
+    \begin{tabular}{lcc}
+        \toprule
+        Model Type      & Precision Type 1 & Recall Type 1 \\
+        \midrule
+        Bagging         & 0.75 & 0.02 \\
+        Random Forest   & 0.71 & 0.03 \\
+        Adaboost        & 0.56 & 0.08 \\
+        KNN             & 0.26 & 0.04 \\
+        Decision Tree   & 0.20 & 0.24 \\
+        \bottomrule
+    \end{tabular}
+    \label{table:type1finalresults}
 \end{table}
 
 The most challenging parts of the proposed work will be fitting and tuning each of the models. While straightforward in building them each model will require tuning using a variety of techniques. More difficult still will be testing more models than just those that have been proposed with perhaps even more specialized and advanced machine learning models like deep neural networks and even extreme gradient boosting as discussed in \citet{lai2020loan}. 
