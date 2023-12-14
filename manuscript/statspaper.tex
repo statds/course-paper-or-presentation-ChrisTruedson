@@ -36,11 +36,17 @@ The Random Forest, Adaboost, and Bagging models demonstrated the highest overall
 The findings underscore the challenged in predicting loan defaults accurately, especially in terms of balancing the precision and recall for default cases. Despite high overall accuracies, most models exhibited a pronounced bias towards predicting non-defaulters, leading to a high number of false negatives for actual default cases. This paper highlights the need for further model tuning and exploration of alternative approaches to enhance the prediction of loan defaulters, ensuring balanced performance across different classes.
 \end{abstract}
 
+\section*{Keywords}
+AdaBoost; Bagging; Credit Risk; Decision Trees; Feedforward Neural Networks; Gradient Boosting; K-Nearest Neighbors (KNN); Loan Default Prediction; Machine Learning; Random Forests; Recurrent Neural Networks (RNN); XGBoost
 
 \section{Introduction}
 \label{sec:intro}
 
-Approximately 22.7 million Americans have personal loans, 45 million have student loans, and 51.5 million households have mortgages with the vast majority of all these loans coming from banks and similar financial institutions. As such, it is crucial that these businesses are able to efficiently, accurately, and with the greatest level of optimization determine who it is safe to loan money to and who is likely to default. This is a practical business problem that is continuously being tinkered with to find new and better approaches. Many studies have took on the issue of using machine learning to predict whether a customer will default on a loan or not using various different methods like decision trees and random forests \citet{madaan2021loan}, KNN approaches \citet{lai2020loan}, and deep neural nets \citet{bayraci2019deep} to name a few.
+Approximately 22.7 million Americans have personal loans, 45 million have student loans, and 51.5 million households have mortgages with the vast majority of all these loans coming from banks and similar financial institutions. As such, it is crucial that these businesses are able to efficiently, accurately, and with the greatest level of optimization determine who it is safe to loan money to and who is likely to default. This not only matters for the financial stability and profitability of these institutions but also has significant implications for the broader economy and the financial well-being of individuals.
+
+Many studies have addressed the issue of using machine learning to predict whether a customer will default on a loan or not using various different methods like decision trees and random forests \citet{madaan2021loan}, KNN approaches \citet{lai2020loan}, and deep neural nets \citet{bayraci2019deep} to name a few. However, these approaches often face challenges in terms of balancing accuracy, precision, and recall, particularly in predicting loan defaults accurately. This highlights a gap in the current literature and methodologies, where existing methods may not sufficiently address the complexities inherent in loan default prediction.
+
+This paper contributes to the field by conducting a comprehensive analysis of several machine learning models, including some not extensively explored in existing literature for this purpose, such as advanced ensemble techniques and different neural network architectures. This paper aims to identify models that not only provide high overall accuracy but also maintain a balanced precision and recall, especially for predicting default cases.
 
 % roadmap
 The rest of the paper is organized as follows.
@@ -49,13 +55,12 @@ The methods are described in Section~\ref{sec:meth}.
 The results are reported in Section~\ref{sec:resu}.
 A discussion concludes in Section~\ref{sec:disc}.
 
-
 \section{Data}
 \label{sec:data}
 
 The data I'll be using will come from the \href{https://www.kaggle.com/datasets/nikhil1e9/loan-default}{Loan Default Prediction Dataset} on Kaggle. Itself is a dataset from a Coursera competition \href{https://www.coursera.org/projects/data-science-coding-challenge-loan-default-prediction}{Loan Default Prediction Challenge} featuring 255,347 observations and 18 variables with various demographic and financial data including but not limited to the borrowers age, their income, their education, their credit score, the loan amount, the type of loan, and various other metrics which provide a full picture of the loan, the borrower, and the borrower's financial situation.
 
-Table \ref{tab:rv} shows the structure of the data set with descriptions of each of the 18 variables and their type. Table \ref{table:sumamryStats} hows the summary statistics of the major numeric variables and Figure \ref{fig:numvarsdists} shows distribution charts of each of these variables highlighting the heavily standardized and equal data in this competition data set. Figure \ref{fig:catvarsdists} shows the same picture but for the categorical variables. Table \ref{table:correlationMatrix} and Figure \ref{fig:corrmatrix} highlight the near zero correlation we see between any variables in the data set.
+Table \ref{tab:rv} shows the structure of the data set with descriptions of each of the 18 variables and their type. Table \ref{table:sumamryStats} hows the summary statistics of the major numeric variables and Figure \ref{fig:numvarsdists} shows distribution charts of each of these variables highlighting the heavily standardized and equal data in this competition data set. Figure \ref{fig:catvarsdists} shows the same picture but for the categorical variables. Table \ref{table:correlationMatrix} and Figure \ref{fig:corrmatrix} highlight the near zero correlation we see between any variables in the data set. However, some pairs shows slight modest correlations like that with Default and Age (-0.1678) suggesting that as age increases the likelihood of default slightly decreases, but this relationship is markedly weak.
 
 \begin{table}[tbp]
   \caption{Structure of the Loan Default Dataset}
