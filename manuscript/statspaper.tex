@@ -29,7 +29,11 @@
 \maketitle
 
 \begin{abstract}
-In examining   
+This paper presents a comprehensive analysis of various machine learning models applied to the prediction of loan defaults. Utilizing a data set with diverse financial financial and demographic attributes, various models were employed including Decision Trees, Random Forests, K-Nearest Neighbors (KNN), Gradient Boosting algorithms (XGBoost, LightGBM, CatBoost), Feedforward Neural Networks (FFNN), Convolutional Neural Networks (CNN), Recurrent Neural Networks (RNN), Adaboost, and Bagging. The evaluation focused on accuracy, precision, recall, and F1-scores, with a particular emphasis on the prediction of default cases.
+
+The Random Forest, Adaboost, and Bagging models demonstrated the highest overall accuracies, each scoring around 0.89. Notably, while these models excelled in predicting non-default cases, they showed limited effectiveness in identifying actual default cases, as evidenced by low recall scores among the type 1 defaulter group. The Gradient Boosting algorithms, although slightly less accurate overall, presented a balanced performance across various metrics. Neural network architectures, including FFNN, CNN, and RNN, also showed promising results with CNN slightly outperforming others in accuracy.
+
+The findings underscore the challenged in predicting loan defaults accurately, especially in terms of balancing the precision and recall for default cases. Despite high overall accuracies, most models exhibited a pronounced bias towards predicting non-defaulters, leading to a high number of false negatives for actual default cases. This paper highlights the need for further model tuning and exploration of alternative approaches to enhance the prediction of loan defaulters, ensuring balanced performance across different classes.
 \end{abstract}
 
 
@@ -206,7 +210,7 @@ In order to find a model best suited to predicting default based on the provided
     \label{table:decisionTreeConfusionMatrix}
 \end{table}
 
-The decision tree model's results as shown above in Table \ref{table:decisionTreeResults} and Table \ref{table:decisionTreeConfusionMatrix} show the strengths and weaknesses of this particular model. For those classified as 0 (non-defaulters), the model shows high precision at 0.90, indicating that when it predicts a loan will not default, it is correct 90\% of the time. The recall for non-defaulters is slightly lower at 0.88, suggesting that the model correctly identifies 88\% of all actual non-default cases. The F1-score (a combination score balancing precision and recall) comes out to 0.89, suggesting strong performance among those that don't default.
+The decision tree model's results as shown in Table \ref{table:decisionTreeResults} and Table \ref{table:decisionTreeConfusionMatrix} show the strengths and weaknesses of this particular model. For those classified as 0 (non-defaulters), the model shows high precision at 0.90, indicating that when it predicts a loan will not default, it is correct 90\% of the time. The recall for non-defaulters is slightly lower at 0.88, suggesting that the model correctly identifies 88\% of all actual non-default cases. The F1-score (a combination score balancing precision and recall) comes out to 0.89, suggesting strong performance among those that don't default.
 
 By contrast, the model's performance on those classified as 1 (defaulters) is markedly weaker. The precision score for this group is only 0.20, meaning only 20\% of the instances predicted as defaults were actual defaults. The recall is slightly higher at 0.24, indicating that the model identifies 24\% of all actual default cases. The F1-score for this group comes out to 0.22, reflecting the models limited effectiveness in accurately predicting defaults.
 
@@ -248,7 +252,7 @@ The overall accuracy of the model comes out to 0.80, meaning it correctly predic
     \label{table:randomForestConfusionMatrix}
 \end{table}
 
-The random forest model's results as shown above in Table \ref{table:randomForestResults} and Table \ref{table:randomForestConfusionMatrix} show the many of the same strengths and weaknesses we saw with the previous decision tree model. For those classified as 0 (non-defaulters), the model has a high level precision at 0.89 and an excellent recall of 1.00, which lead in turn to an F1-score of 0.94. These values indicate that the model is almost perfect in identifying non-default cases but has a slight tendency to mislabel a few default cases as non-defaults.
+The random forest model's results as shown in Table \ref{table:randomForestResults} and Table \ref{table:randomForestConfusionMatrix} show the many of the same strengths and weaknesses we saw with the previous decision tree model. For those classified as 0 (non-defaulters), the model has a high level precision at 0.89 and an excellent recall of 1.00, which lead in turn to an F1-score of 0.94. These values indicate that the model is almost perfect in identifying non-default cases but has a slight tendency to mislabel a few default cases as non-defaults.
 
 Among those classified as 1 (defaulters) the precision is 0.71, suggesting that when the model predicts a default, it is correct 71\% of the time, a fairly good percentage. However, the recall is extremely low at 0.03, meaning the model identifies only 3\% of the actual default cases present. The F1-score for this group is just 0.06, reflecting the model's poor performance in predicting defaults.
 
@@ -292,7 +296,7 @@ The overall model accuracy is 0.89, which, while high, is largely driven by its 
     \label{table:kNNConfusionMatrix}
 \end{table}
 
-The K-Nearest Neighbor model's results as shown above in Table \ref{table:kNNResults} and Table \ref{table:kNNConfusionMatrix} show a continuation of the results we've seen in the previous two models. For those classified as 0 (non-defaulters) the model shows strong performance with a precision of 0.89 and an even higher recall of 0.98, culminating with an F1-score of 0.93. This indicates the model is highly effective in identifying non-default cases, with a tendency to misclassify certain default cases as non-defaults.
+The K-Nearest Neighbor model's results as shown in Table \ref{table:kNNResults} and Table \ref{table:kNNConfusionMatrix} show a continuation of the results we've seen in the previous two models. For those classified as 0 (non-defaulters) the model shows strong performance with a precision of 0.89 and an even higher recall of 0.98, culminating with an F1-score of 0.93. This indicates the model is highly effective in identifying non-default cases, with a tendency to misclassify certain default cases as non-defaults.
 
 For defaulters, the model's precision is low at 0.26, meaning only about 26\% of the instances predicted as default are actual defaults. The recall is far lower at 0.04 meaning the model only correctly identifies a mere 4\% of all actual default cases. The F1-score reflects this at 0.07, highlighting the poor performance in predicting defaults.
 
@@ -319,7 +323,7 @@ The overall model accuracy score stands at 0.87, largely influenced by its effec
     \label{table:gradientBoostingResults}
 \end{table}
 
-The gradient boosting models results shown above in Table \ref{table:gradientBoostingResults} suggest much of the same results as previous. Of the three gradient boosting model approaches attempted the accuracy results are very similar among all the models and suggest a high degree of accuracy. With that said, these models suffere from the same flaws as the models reviewed previously in that they are good at predicting among the majority group of non-defaulters but struggle in predicting defaults correctly.
+The gradient boosting models results shown in Table \ref{table:gradientBoostingResults} suggest much of the same results as previous. Of the three gradient boosting model approaches attempted the accuracy results are very similar among all the models and suggest a high degree of accuracy. With that said, these models suffere from the same flaws as the models reviewed previously in that they are good at predicting among the majority group of non-defaulters but struggle in predicting defaults correctly.
 
 Looking firstly at the XGBoost (Extreme Gradient Boosting) model we see an accuracy of 0.8865. An accuracy of 88.65\% indicates that the model correctly predicted the loan default status for this percentage of cases over the validation data set.
 
@@ -366,7 +370,7 @@ Finally, the CatBoost (Categorical Boost) model is marginally lower than the oth
     \label{table:fFNeuralNetworkResults}
 \end{table}
 
-The feedforward neural network model results with variations for tuning shown above in Table \ref{table:fFNeuralNetworkResults} shows much of the same with regards to accuracy levels, strengths, and weaknesses. This neural network was run under a variety of configurations varying the number of hidden layers, the number of units/neurons, and the dropout rate. The primary metric being used to evaluate the models being their accuracy.
+The feedforward neural network model results with variations for tuning shown in Table \ref{table:fFNeuralNetworkResults} shows much of the same with regards to accuracy levels, strengths, and weaknesses. This neural network was run under a variety of configurations varying the number of hidden layers, the number of units/neurons, and the dropout rate. The primary metric being used to evaluate the models being their accuracy.
 
 The accuracies of the models range from 88.47\% to 88.77\%. These values indicate the proportion of the total number of predictions that were correct. The highest accuracy achieved was 88.7742\%, with a configuration of 2 hidden layers, 32 units, and a dropout rate of 0.3. 
 
@@ -389,7 +393,7 @@ The FFNN models demonstrate good performance in predicting loan defaults. Howeve
     \label{table:neuralNetworkResults}
 \end{table}
 
-The nerual network results shown above in Table \ref{table:neuralNetworkResults} shows the results for a variety of nerual network types, taking the best feedforward results from Table \ref{table:fFNeuralNetworkResults}, and adding results for a CNN (Convolutional Neural Network), and a RNN (Recurrent Neural Network) model.
+The nerual network results shown in Table \ref{table:neuralNetworkResults} shows the results for a variety of nerual network types, taking the best feedforward results from Table \ref{table:fFNeuralNetworkResults}, and adding results for a CNN (Convolutional Neural Network), and a RNN (Recurrent Neural Network) model.
 
 Looking at the models not previously discussed starting with the CNN we sigh a marginally higher accuracy score for this model of 88.78\% a 0.01\% improvement over the FFNN. The RNN was the lowest scoring of the pact for neural network models with an accuracy score of 88.72\%.
 
@@ -427,7 +431,7 @@ All three neural network models demonstrate comparable and high accuracy in pred
     \label{table:adaboostConfusionMatrix}
 \end{table}
 
-The Adaboost model's results as shown above in Table \ref{table:adaboostResults} and Table \ref{table:adaboostConfusionMatrix} show much the same with regards to what we've seen repeatedly in regards to modeling this data set, however, there does appear to be some marginal improvement in some metrics. As is expected at this point the model shows strong performance for non-defaulters with a precision of 0.94 and a very high recall of 0.99 for a combined F1-score of 0.94. This all indicates the model is highly effective in identifying non-default cases, with a very low rate of misclassifying non-defaulters.
+The Adaboost model's results as shown in Table \ref{table:adaboostResults} and Table \ref{table:adaboostConfusionMatrix} show much the same with regards to what we've seen repeatedly in regards to modeling this data set, however, there does appear to be some marginal improvement in some metrics. As is expected at this point the model shows strong performance for non-defaulters with a precision of 0.94 and a very high recall of 0.99 for a combined F1-score of 0.94. This all indicates the model is highly effective in identifying non-default cases, with a very low rate of misclassifying non-defaulters.
 
 For defaulters, the model's precision is moderate at 0.56, suggesting that when it predicts default, it is correct about 56\% of the time. However, it's recall is quite low at 0.08, meaning that the model correctly identifies only 8\% of actual default cases. The F1-score of 0.15 reflects the poor performance among this group.
 
@@ -469,7 +473,7 @@ The Adaboost model sees strong performance in non-defaulters as has been the tre
     \label{table:boostingConfusionMatrix}
 \end{table}
 
-Finally as has become the trend the Boosting model's results shown above in Table \ref{table:boostingResults} and Table \ref{table:boostingConfusionMatrix} show the story we've seen repeatedly in modeling this data set. The model demonstrates strong performance for non-defaulters, with a precision of 0.89 and a near perfect recall of 1.00, for a F1-score of 0.94. The model has shown to be highly effective in identifying non-default cases and has minimal rate of misclassification for default cases as non-defaults.
+Finally as has become the trend the Boosting model's results shown in Table \ref{table:boostingResults} and Table \ref{table:boostingConfusionMatrix} show the story we've seen repeatedly in modeling this data set. The model demonstrates strong performance for non-defaulters, with a precision of 0.89 and a near perfect recall of 1.00, for a F1-score of 0.94. The model has shown to be highly effective in identifying non-default cases and has minimal rate of misclassification for default cases as non-defaults.
 
 For defaulters, the model has a moderately strong precision of 0.75 meaning when it predicts default it's largely correct. With that said the recall is terrible at 0.02, meaning only 2\% of actual default cases are correctly identified as such. All combining for an F1-score of 0.04 to highlight this performance issue.
 
@@ -510,7 +514,7 @@ This is good for businesses in the sense that the models succeed in allowing tho
     \label{table:overallModelResults}
 \end{table}
 
-As shown above in Table \ref{table:overallModelResults} we see the random forest model achieve the highest overall accuracy score tied with the Adaboost model and Bagging approach at 89\%. This meaning that 89\% of the time the overall the model made the right prediction of default or no default. However, as previously discussed this score isn't entirely true and is heavily influenced by these models success among the majority class (non-defaulters) when infact the picture when lookign at the default class paints a much more problematic picture. Overall it should be noted that the range of accuracy across all model types is from 80\% to 89\% suggesting all the models perform very similarly.
+As shown in Table \ref{table:overallModelResults} we see the random forest model achieve the highest overall accuracy score tied with the Adaboost model and Bagging approach at 89\%. This meaning that 89\% of the time the overall the model made the right prediction of default or no default. However, as previously discussed this score isn't entirely true and is heavily influenced by these models success among the majority class (non-defaulters) when infact the picture when lookign at the default class paints a much more problematic picture. Overall it should be noted that the range of accuracy across all model types is from 80\% to 89\% suggesting all the models perform very similarly.
 
 \begin{table}[hbt!]
     \centering
@@ -530,7 +534,7 @@ As shown above in Table \ref{table:overallModelResults} we see the random forest
     \label{table:type1finalresults}
 \end{table}
 
-As shown above in Table \ref{table:type1finalresults} a more complex picture is shown with regards to the success of our models. The top three models from above based on accuracy remain the top three here based on type 1 precision albeit in a slightly different order. The precision for type 1 among the bagging approach and the random forest model remains fairly strong at above 70\% meaning that when the model predicts default it does so correctly a good percentage of the time. Looking at recall we see a standout among the top three of adaboost with 0.08 and overall with the decision tree model at 0.24. This score highlights the model correctly identified, in the case of the decision tree model, 24\% of the actual default cases 3 times higher than that of it's next closest peer. However the decision tree model sees a dismal 0.20 precision score among the type 1 class.
+As shown in Table \ref{table:type1finalresults} a more complex picture is shown with regards to the success of our models. The top three models from above based on accuracy remain the top three here based on type 1 precision albeit in a slightly different order. The precision for type 1 among the bagging approach and the random forest model remains fairly strong at above 70\% meaning that when the model predicts default it does so correctly a good percentage of the time. Looking at recall we see a standout among the top three of adaboost with 0.08 and overall with the decision tree model at 0.24. This score highlights the model correctly identified, in the case of the decision tree model, 24\% of the actual default cases 3 times higher than that of it's next closest peer. However the decision tree model sees a dismal 0.20 precision score among the type 1 class.
 
 In summary, based off these overall results if maximum prediction of defaults is the goal at the risk of losing some customers the decision tree model appears best suited. If maximization of customers with the best level among these models for eliminating those that will default is the goal then the adaboost model would be appropriate. As mentioned at the start of this section and throughout the results section due to the nature of the data set these models displayed extremely high levels of bias towards the majority class (non-defaulters) and is one of the major challenges in doing this type of modeling.
 
